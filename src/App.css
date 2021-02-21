@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  background-color: aliceblue !important;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  font-size: 0.6rem;
+  background-color: rgb(44, 43, 43);
+  color: white;
+  padding: 8px 0;
+  margin-top: auto;
+}

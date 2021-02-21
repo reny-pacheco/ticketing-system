@@ -1,0 +1,32 @@
+.label {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: rgba(65, 61, 61, 0.836) !important;
+  float: left;
+}
+th {
+  color: rgb(95, 93, 93) !important;
+  font-size: 0.8rem;
+}
+td {
+  font-size: 0.8rem !important;
+  color: grey !important;
+  padding-bottom: 0px !important;
+}
+.input {
+  font-size: 0.7rem !important;
+  font-weight: bold !important;
+}
+.form-title {
+  font-size: 1rem !important;
+  color: rgb(95, 93, 93) !important;
+  font-weight: 600 !important;
+}
+.card {
+  margin: 0 auto;
+  width: 50%;
+}
+.input {
+  color: rgb(73, 70, 70) !important;
+  font-weight: bold !important;
+}
