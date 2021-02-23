@@ -1,0 +1,14 @@
+button {
+  font-size: 0.7rem !important;
+}
+.home {
+  background-color: rgba(188, 192, 195, 0.712) !important;
+}
+.list-item {
+  font-size: 0.8rem !important;
+  font-weight: bold;
+  padding: 0.1rem;
+}
+.text-primary {
+  margin-right: 10px !important;
+}

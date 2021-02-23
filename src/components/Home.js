@@ -1,8 +1,16 @@
 import { React, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import "./Home.css";
 
 import axios from "axios";
-import { userStatus } from "../features/contacts/userSlice";
+import { userStatus } from "../features/user/userSlice";
+import {
+  Calendar3,
+  PersonPlusFill,
+  QuestionDiamondFill,
+} from "react-bootstrap-icons";
+import Button from "react-bootstrap/esm/Button";
+import { Link, useHistory } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,8 +29,71 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Home Component</h1>
+    <div className="home">
+      <div className="ticket d-flex flex-row-reverse">
+        <Button className=" btn-sm  mr-2 mt-2 btn-warning">
+          {"    "}
+          <PersonPlusFill className="m-1 " /> Check ticket status
+        </Button>
+        <Button className="  btn-sm mt-2 mr-2 btn-success">
+          {"  "}
+          <PersonPlusFill className="m-1 " /> Create new ticket
+        </Button>
+      </div>
+      <div className="container bg-light mt-2 mb-2">
+        <h5 className="text-left p-2 font-weight-bold">
+          Frequently Asked Question
+        </h5>
+        <div className="list text-left ml-4 pb-2">
+          <div className="list-item">
+            <QuestionDiamondFill className="text-primary" />
+            {"   "}
+            <Link to="">How to view my grades</Link>
+          </div>
+          <div className="list-item">
+            <QuestionDiamondFill className="text-primary" />
+            {"  "}
+            <Link to="">Available Payment Methods</Link>
+          </div>
+          <div className="list-item">
+            <QuestionDiamondFill className="text-primary" />
+            {"  "}
+            <Link to="">Dropping and Adding Subject</Link>
+          </div>
+          <div className="list-item">
+            <QuestionDiamondFill className="text-primary" />
+            {"  "}
+            <Link to="">How to shift course or strand</Link>
+          </div>
+        </div>
+      </div>
+      <div className="container bg-light mt-2 mb-2">
+        <h5 className="text-left p-2 font-weight-bold">
+          Virtual Class Schedule{" "}
+        </h5>
+        <div className="list text-left ml-4 pb-2">
+          <div className="list-item">
+            <Calendar3 className="text-primary" />
+            {"  "}
+            <Link to="">1st yr - Computer Science</Link>
+          </div>
+          <div className="list-item">
+            <Calendar3 className="text-primary" />
+            {"  "}
+            <Link to="">3rd yr - Information Technology</Link>
+          </div>
+          <div className="list-item">
+            <Calendar3 className="text-primary" />
+            {"  "}
+            <Link to="">Grade 10 - STEM</Link>
+          </div>
+          <div className="list-item">
+            <Calendar3 className="text-primary" />
+            {"  "}
+            <Link to="">2nd yr - Computer Engineering</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

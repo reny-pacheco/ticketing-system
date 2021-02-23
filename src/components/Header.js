@@ -5,7 +5,7 @@ import { Nav } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getStatus, userStatus } from "../features/contacts/userSlice";
+import { getStatus, userStatus } from "../features/user/userSlice";
 
 import axios from "axios";
 

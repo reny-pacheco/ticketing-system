@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import { getStatus } from "./features/contacts/userSlice";
+import { getStatus } from "./features/user/userSlice";
 import { useSelector } from "react-redux";
 
 import axios from "axios";
