@@ -30,3 +30,11 @@ td {
   color: rgb(73, 70, 70) !important;
   font-weight: bold !important;
 }
+.area {
+  resize: none !important;
+  height: 7rem !important;
+}
+.cancel {
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}

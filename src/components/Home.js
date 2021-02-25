@@ -31,13 +31,25 @@ const Home = () => {
   return (
     <div className="home">
       <div className="ticket d-flex flex-row-reverse">
-        <Button className=" btn-sm  mr-2 mt-2 btn-warning">
-          {"    "}
-          <PersonPlusFill className="m-1 " /> Check ticket status
+        <Button className="  btn-sm mt-2 mr-2 btn-warning">
+          {"  "}
+          <PersonPlusFill className="m-1 " />{" "}
+          <Link
+            to="/ticket-status"
+            className="btn-link text-dark font-weight-bold"
+          >
+            Check ticket status
+          </Link>
         </Button>
         <Button className="  btn-sm mt-2 mr-2 btn-success">
           {"  "}
-          <PersonPlusFill className="m-1 " /> Create new ticket
+          <PersonPlusFill className="m-1 text-light" />{" "}
+          <Link
+            to="/create-ticket"
+            className="btn-link text-light font-weight-bold"
+          >
+            Create New Ticket
+          </Link>
         </Button>
       </div>
       <div className="container bg-light mt-2 mb-2">

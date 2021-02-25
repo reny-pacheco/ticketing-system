@@ -32,24 +32,20 @@ const Header = () => {
         <h6 className="text-light">Ask.com</h6>
       </Navbar.Brand>
       <Nav className="ml-auto">
-        <Nav.Link className="navlink">
-          <Link to="/" className="text-light Link">
-            Home
-          </Link>
-        </Nav.Link>
+        <Link to="/" className="text-light Link mr-2">
+          Home
+        </Link>
         {value === false && (
           <>
-            <Nav.Link className="navlink">
-              <Link to="/login" className="text-light Link">
-                Login
-              </Link>
-            </Nav.Link>
+            <Link to="/login" className="text-light Link">
+              Login
+            </Link>
           </>
         )}
         {value === true && (
           <>
             <Nav.Link
-              className=" text-light logout p-0 Link pt-1 ml-2"
+              className=" text-light logout p-0 Link pt-0 ml-2"
               onClick={logout}
             >
               Logout

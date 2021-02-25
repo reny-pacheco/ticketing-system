@@ -2,15 +2,17 @@ import { React, useState } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import "./ContactForm.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory, Redirect } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
-import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const history = useHistory();
+  const { state, location } = useLocation();
+
+  const { from } = state || { from: { pathname: "/" } };
 
   const handleChange = (e) => {
     const name = e.target.name;
