@@ -2,7 +2,10 @@ import { React, useState } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import "./ContactForm.css";
-import { Link, useLocation, useHistory, Redirect } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userStatus } from "../features/user/userSlice";
+
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
 
@@ -10,8 +13,8 @@ const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const history = useHistory();
-  const { state, location } = useLocation();
-
+  const dispatch = useDispatch();
+  const { state } = useLocation();
   const { from } = state || { from: { pathname: "/" } };
 
   const handleChange = (e) => {
@@ -24,8 +27,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/login", user);
-      if ((res.data = "success")) {
-        history.push("/");
+      if (res.data === true) {
+        dispatch(userStatus(true));
+        from.pathname !== "/" ? history.push(from.pathname) : history.push("/");
       }
     } catch (err) {
       setError((error) => (error = err.response.data.errors));

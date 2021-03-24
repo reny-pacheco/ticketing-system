@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import "./ContactForm.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
-import { Link, useHistory } from "react-router-dom";
+import { userStatus } from "../features/user/userSlice";
+
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -12,7 +15,9 @@ import { PersonPlusFill } from "react-bootstrap-icons";
 
 const Register = () => {
   const history = useHistory();
-
+  const dispatch = useDispatch();
+  const { state } = useLocation();
+  const { from } = state || { from: { pathname: "/" } };
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -31,8 +36,10 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/register", user);
-      if ((res.data = "success")) {
-        history.push("/");
+      if (res.data === true) {
+        dispatch(userStatus(true));
+
+        from.pathname !== "/" ? history.push(from.pathname) : history.push("/");
       }
     } catch (err) {
       setErrors(err.response.data.errors);

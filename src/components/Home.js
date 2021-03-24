@@ -10,7 +10,7 @@ import {
   QuestionDiamondFill,
 } from "react-bootstrap-icons";
 import Button from "react-bootstrap/esm/Button";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const Home = () => {
         });
     }
     isLoggedIn();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home">
@@ -83,7 +83,7 @@ const Home = () => {
         <h5 className="text-left p-2 font-weight-bold">
           Virtual Class Schedule{" "}
         </h5>
-        <div className="list text-left ml-4 pb-2">
+        <div className="list text-left ml-4 pb-2 mb-4">
           <div className="list-item">
             <Calendar3 className="text-primary" />
             {"  "}

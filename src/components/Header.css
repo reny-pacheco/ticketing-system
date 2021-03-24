@@ -27,3 +27,43 @@ small {
 .border-danger {
   border: 1px solid red !important;
 }
+.logo {
+  font-size: 1rem !important;
+  text-decoration: none !important;
+}
+.logo:active {
+  text-decoration: underline !important;
+}
+
+.logout {
+  font-size: 0.7rem !important;
+  padding: 0px !important;
+  outline: none !important;
+}
+.logout:focus {
+  outline: none !important;
+}
+.logout-text {
+  font-weight: bold !important;
+}
+.logout-btn {
+  font-size: 0.8rem !important;
+  outline: none;
+  border: none !important;
+  background: transparent !important;
+}
+.logout-btn:focus {
+  box-shadow: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+}
+.toggle {
+  outline: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+.toggle:focus {
+  box-shadow: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+}

@@ -3,6 +3,9 @@ import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 import { Nav } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getStatus, userStatus } from "../features/user/userSlice";
@@ -29,10 +32,12 @@ const Header = () => {
         href="#home"
         className="logo text-primary font-weight-bold p-0"
       >
-        <h6 className="text-light">Ask.com</h6>
+        <Link to="/" className="text-light logo">
+          Ask.com
+        </Link>
       </Navbar.Brand>
       <Nav className="ml-auto">
-        <Link to="/" className="text-light Link mr-2">
+        <Link to="/" className="text-light Link mr-2 my-auto text-center">
           Home
         </Link>
         {value === false && (
@@ -44,12 +49,24 @@ const Header = () => {
         )}
         {value === true && (
           <>
-            <Nav.Link
-              className=" text-light logout p-0 Link pt-0 ml-2"
-              onClick={logout}
-            >
-              Logout
-            </Nav.Link>
+            <Dropdown as={ButtonGroup} size="sm" className="drop">
+              <Button variant="primary" className="logout-btn ">
+                Reny
+              </Button>
+
+              <Dropdown.Toggle
+                split
+                variant="primary"
+                id="dropdown-split-basic"
+                className="toggle"
+              />
+
+              <Dropdown.Menu className="logout">
+                <Dropdown.Item className="logout-text" onClick={logout}>
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </>
         )}
       </Nav>
