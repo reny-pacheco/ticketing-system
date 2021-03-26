@@ -10,10 +10,13 @@ import CreateTicket from "./components/CreateTicket";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Tickets from "./components/Tickets";
+import { getStatus } from "./features/user/userSlice";
+import { useSelector } from "react-redux";
 
 axios.defaults.withCredentials = true;
 
 function App() {
+  const value = useSelector(getStatus);
   return (
     <div className="App">
       <Header />
@@ -27,12 +30,8 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <PrivateRoute path="/create-ticket">
-          <CreateTicket />
-        </PrivateRoute>
-        <PrivateRoute path="/ticket-status">
-          <Tickets />
-        </PrivateRoute>
+        <PrivateRoute path="/create-ticket" component={CreateTicket} />
+        <PrivateRoute path="/ticket-status" component={Tickets} />
       </Switch>
 
       <footer> &#169; Reny Vargas Pacheco</footer>

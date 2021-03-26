@@ -37,6 +37,7 @@ const Register = () => {
     try {
       const res = await axios.post("http://localhost:3000/register", user);
       if (res.data === true) {
+        localStorage.setItem("state", JSON.stringify("auth-user"));
         dispatch(userStatus(true));
 
         from.pathname !== "/" ? history.push(from.pathname) : history.push("/");

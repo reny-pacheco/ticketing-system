@@ -1,23 +1,22 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { getStatus } from "../features/user/userSlice";
 
-const PrivateRoute = ({ children, ...rest }) => {
-  const value = useSelector(getStatus);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const value = JSON.parse(localStorage.getItem("state"));
+  const location = useLocation();
+  console.log(value);
 
   return (
-    <Route
-      {...rest}
-      render={({ location }) => {
-        return value === true ? (
-          children
-        ) : (
-          <Redirect to={{ pathname: "/login", state: { from: location } }} />
-        );
-      }}
-    />
+    <Route {...rest}>
+      {value === "auth-user" ? (
+        <Component />
+      ) : (
+        <Redirect to={{ pathname: "/login", state: { from: location } }} />
+      )}
+    </Route>
   );
 };
 

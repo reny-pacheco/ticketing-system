@@ -1,10 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./ContactForm.css";
 import { Link } from "react-router-dom";
-
 import { Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
-
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
@@ -42,9 +40,7 @@ const CreateTicket = () => {
                 //   : "border border-danger")
               }
             >
-              <option className="input" disabled>
-                Select your concern
-              </option>
+              <option className="input">Select your concern</option>
               <option className="input">Enrollment</option>
               <option className="input">Assessment and Payment</option>
               <option className="input">Student Grade</option>
@@ -107,9 +103,7 @@ const CreateTicket = () => {
                   //   : "border border-danger")
                 }
               >
-                <option className="input" disabled>
-                  Select your course
-                </option>
+                <option className="input">Select your course</option>
                 <option className="input">BSIT</option>
                 <option className="input">BSCS</option>
               </Form.Control>
@@ -132,9 +126,7 @@ const CreateTicket = () => {
                 //   : "border border-danger")
               }
             >
-              <option className="input" disabled>
-                Select your school
-              </option>
+              <option className="input">Select your school</option>
               <option className="input">School - MAKATI</option>
               <option className="input">School - MANILA</option>
               <option className="input">School - DAVAO</option>

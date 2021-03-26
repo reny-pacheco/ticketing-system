@@ -16,9 +16,11 @@ const Header = () => {
   const value = useSelector(getStatus);
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("state"));
 
   const logout = () => {
     axios.get("http://localhost:3000/logout");
+    localStorage.removeItem("state");
     dispatch(userStatus(false));
     history.push("/login");
   };
@@ -28,10 +30,7 @@ const Header = () => {
       variant="dark"
       className="d-flex flex-row justify-content-between .8rem bg-primary"
     >
-      <Navbar.Brand
-        href="#home"
-        className="logo text-primary font-weight-bold p-0"
-      >
+      <Navbar.Brand className="logo text-primary font-weight-bold p-0">
         <Link to="/" className="text-light logo">
           Ask.com
         </Link>
@@ -40,14 +39,14 @@ const Header = () => {
         <Link to="/" className="text-light Link mr-2 my-auto text-center">
           Home
         </Link>
-        {value === false && (
+        {user !== "auth-user" && (
           <>
             <Link to="/login" className="text-light Link">
               Login
             </Link>
           </>
         )}
-        {value === true && (
+        {user === "auth-user" && (
           <>
             <Dropdown as={ButtonGroup} size="sm" className="drop">
               <Button variant="primary" className="logout-btn ">
