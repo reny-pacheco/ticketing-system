@@ -4,7 +4,7 @@ import axios from "axios";
 import "./ContactForm.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userStatus } from "../features/user/userSlice";
+import { userStatus, userInfo } from "../features/user/userSlice";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
@@ -27,17 +27,16 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/login", user);
-      if (res.data === true) {
-        dispatch(userStatus(true));
-        console.log(document.cookie.token);
-        localStorage.setItem("state", JSON.stringify("auth-user"));
-        from.pathname !== "/" ? history.push(from.pathname) : history.push("/");
-      }
+
+      const userData = res.data;
+      dispatch(userStatus(true));
+      dispatch(userInfo(userData));
+      localStorage.setItem("state", JSON.stringify("auth-user"));
+      from.pathname !== "/" ? history.push(from.pathname) : history.push("/");
     } catch (err) {
       setError((error) => (error = err.response.data.errors));
     }
   };
-  console.log(from.pathname);
 
   return (
     <Card className="px-0 mt-4 col-sm-10 col-md-4 shadow">

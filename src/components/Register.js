@@ -4,7 +4,7 @@ import "./ContactForm.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
-import { userStatus } from "../features/user/userSlice";
+import { userStatus, userInfo } from "../features/user/userSlice";
 
 import { Link, useHistory, useLocation } from "react-router-dom";
 
@@ -36,12 +36,11 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/register", user);
-      if (res.data === true) {
-        localStorage.setItem("state", JSON.stringify("auth-user"));
-        dispatch(userStatus(true));
-
-        from.pathname !== "/" ? history.push(from.pathname) : history.push("/");
-      }
+      const userData = res.data;
+      dispatch(userStatus(true));
+      dispatch(userInfo(userData));
+      localStorage.setItem("state", JSON.stringify("auth-user"));
+      from.pathname !== "/" ? history.push(from.pathname) : history.push("/");
     } catch (err) {
       setErrors(err.response.data.errors);
     }

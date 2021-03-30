@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import "./App.css";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -10,13 +10,22 @@ import CreateTicket from "./components/CreateTicket";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Tickets from "./components/Tickets";
-import { getStatus } from "./features/user/userSlice";
-import { useSelector } from "react-redux";
+import { getStatus, userStatus } from "./features/user/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 axios.defaults.withCredentials = true;
 
 function App() {
-  const value = useSelector(getStatus);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const hasAuthUser = JSON.parse(localStorage.getItem("state"));
+    if (hasAuthUser == "auth-user") {
+      dispatch(userStatus(true));
+    } else {
+      dispatch(userStatus(false));
+    }
+  }, []);
   return (
     <div className="App">
       <Header />

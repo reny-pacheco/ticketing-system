@@ -15,19 +15,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   function isLoggedIn() {
-  //     axios
-  //       .get("http://localhost:3000/isLoggedIn")
-  //       .then((res) => dispatch(userStatus(res.data)))
-  //       .catch((err) => {
-  //         dispatch(userStatus(err.data));
-  //         console.log(err.data);
-  //       });
-  //   }
-  //   isLoggedIn();
-  // }, [dispatch]);
-
   return (
     <div className="home">
       <div className="ticket d-flex flex-row-reverse">

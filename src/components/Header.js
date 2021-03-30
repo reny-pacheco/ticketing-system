@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 import { Nav } from "react-bootstrap";
@@ -8,22 +8,37 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getStatus, userStatus } from "../features/user/userSlice";
+import {
+  getStatus,
+  userStatus,
+  userInfo,
+  getUserProfile,
+} from "../features/user/userSlice";
 
 import axios from "axios";
 
 const Header = () => {
-  const value = useSelector(getStatus);
+  const user = useSelector(getStatus);
+  const userData = useSelector(getUserProfile);
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("state"));
 
   const logout = () => {
     axios.get("http://localhost:3000/logout");
     localStorage.removeItem("state");
     dispatch(userStatus(false));
+    dispatch(userInfo({}));
     history.push("/login");
   };
+
+  useEffect(() => {
+    const hasAuthUser = JSON.parse(localStorage.getItem("state"));
+    if (hasAuthUser == "auth-user") {
+      dispatch(userStatus(true));
+    } else {
+      dispatch(userStatus(false));
+    }
+  }, []);
 
   return (
     <Navbar
@@ -39,18 +54,12 @@ const Header = () => {
         <Link to="/" className="text-light Link mr-2 my-auto text-center">
           Home
         </Link>
-        {user !== "auth-user" && (
-          <>
-            <Link to="/login" className="text-light Link">
-              Login
-            </Link>
-          </>
-        )}
-        {user === "auth-user" && (
+
+        {user ? (
           <>
             <Dropdown as={ButtonGroup} size="sm" className="drop">
               <Button variant="primary" className="logout-btn ">
-                Reny
+                {userData.firstname}
               </Button>
 
               <Dropdown.Toggle
@@ -66,6 +75,12 @@ const Header = () => {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="text-light Link">
+              Login
+            </Link>
           </>
         )}
       </Nav>
